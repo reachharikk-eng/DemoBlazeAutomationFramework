@@ -1,23 +1,54 @@
 package listeners;
 
+import com.aventstack.extentreports.ExtentReports;
+import com.aventstack.extentreports.ExtentTest;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+import utils.ExtentManager;
 import utils.ScreenshotUtil;
 
 public class TestListener
         implements ITestListener {
 
+    ExtentReports extent =
+            ExtentManager.getInstance();
+
+    ExtentTest test;
+
+    @Override
+    public void onTestStart(
+            ITestResult result) {
+
+        test = extent.createTest(
+                result.getName());
+    }
+
+    @Override
+    public void onTestSuccess(
+            ITestResult result) {
+
+        test.pass("Test Passed");
+    }
+
     @Override
     public void onTestFailure(
             ITestResult result) {
 
-        String testName =
-                result.getName();
+        test.fail(result.getThrowable());
 
-        ScreenshotUtil
-                .captureScreenshot(testName);
+        ScreenshotUtil.captureScreenshot(
+                result.getName());
 
-        System.out.println(
-                "Screenshot captured for failed test");
+        test.addScreenCaptureFromPath(
+                "screenshots/"
+                        + result.getName()
+                        + ".png");
+    }
+
+    @Override
+    public void onFinish(
+            org.testng.ITestContext context) {
+
+        extent.flush();
     }
 }
