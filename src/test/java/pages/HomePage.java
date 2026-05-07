@@ -51,18 +51,17 @@ public class HomePage extends BasePage {
         try {
 
             wait.until(ExpectedConditions.visibilityOfElementLocated(
-                    loginLink));
+                    By.id("login2")));
 
-            return driver.findElement(loginLink).isDisplayed();
+            return true;
 
         } catch (Exception e) {
 
             return false;
         }
     }
-
     public void clickLogout() {
 
-        driver.findElement(logoutLink).click();
+        clickElement(driver.findElement(logoutLink));
     }
 }
