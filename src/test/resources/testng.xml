@@ -8,6 +8,9 @@
 
             <class name="tests.LoginTest"/>
             <class name="tests.SignupTest"/>
+            <class name="tests.LoginDataProviderTest"/>
+            <class name="tests.ProductTest"/>
+            <class name="tests.CartTest"/>
         </classes>
 
     </test>
