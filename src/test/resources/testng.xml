@@ -1,8 +1,13 @@
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 
 <suite name="DemoBlaze Suite">
+    <listeners>
+        <listener class-name="listeners.TestListener"/>
+    </listeners>
+
 
     <test name="Login Tests">
+
 
         <classes>
 
@@ -11,6 +16,7 @@
             <class name="tests.LoginDataProviderTest"/>
             <class name="tests.ProductTest"/>
             <class name="tests.CartTest"/>
+            <class name="tests.OrderTest"/>
         </classes>
 
     </test>
