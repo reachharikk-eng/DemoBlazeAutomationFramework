@@ -1,5 +1,5 @@
 package pages;
-
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -19,8 +19,10 @@ public class LoginPage extends BasePage {
 
     public void login(String user, String pass) {
 
-        driver.findElement(username).sendKeys(user);
-        driver.findElement(password).sendKeys(pass);
-        driver.findElement(loginBtn).click();
+        typeText(driver.findElement(username), user);
+        typeText(driver.findElement(password), pass);
+
+        clickElement(driver.findElement(loginBtn));
+
     }
 }

@@ -39,4 +39,16 @@ public class BasePage {
         element.clear();
         element.sendKeys(text);
     }
+
+    public String getAlertText() {
+
+        return wait.until(ExpectedConditions.alertIsPresent())
+                .getText();
+    }
+
+    public void acceptAlert() {
+
+        wait.until(ExpectedConditions.alertIsPresent())
+                .accept();
+    }
 }
