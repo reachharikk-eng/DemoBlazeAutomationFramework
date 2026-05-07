@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class ProductPage extends BasePage {
 
@@ -16,7 +17,8 @@ public class ProductPage extends BasePage {
     By monitorsCategory =
             By.xpath("//a[text()='Monitors']");
 
-    By firstProduct = By.cssSelector(".hrefch");
+    By firstProduct =
+            By.xpath("//a[@class='hrefch']");
 
     By productTitle = By.cssSelector(".name");
 
@@ -66,9 +68,13 @@ public class ProductPage extends BasePage {
 
     public void clickFirstProduct() {
 
-        clickElement(driver.findElement(firstProduct));
-    }
+        wait.until(ExpectedConditions
+                .presenceOfAllElementsLocatedBy(firstProduct));
 
+        driver.findElements(firstProduct)
+                .get(0)
+                .click();
+    }
     public void clickAddToCart() {
 
         clickElement(driver.findElement(addToCartBtn));
